@@ -4,27 +4,46 @@ let b3 = [];
 let s = [b1,b2,b3];
 let p = [];
 let pads = [];
-let padx = [-150,-50,50,150,-150,-50,50,150];
-let pady = [-50,-50,-50,-50,50,50,50,50];
-let keys = [65,83,68,70,74,75,76,186];
+let padx = [100,200,300,400,100,200,300,400];
+let pady = [100,100,100,100,200,200,200,200];
+let keys = [65,83,68,70,90,88,67,86];
+let bank = 0;
 
 function preload() {
-  s[0][0] = loadSound('audio/G2.wav');
-  s[0][1] = loadSound('audio/C3.wav');
-  s[0][2] = loadSound('audio/E3.wav');
-  s[0][3] = loadSound('audio/G3.wav');
-  s[0][4] = loadSound('audio/C4.wav');
-  s[0][5] = loadSound('audio/E4.wav');
-  s[0][6] = loadSound('audio/G4.wav');
-  s[0][7] = loadSound('audio/C5.wav');
+  b1[0] = loadSound('audio1/G2.wav');
+  b1[1] = loadSound('audio1/C3.wav');
+  b1[2] = loadSound('audio1/E3.wav');
+  b1[3] = loadSound('audio1/G3.wav');
+  b1[4] = loadSound('audio1/C4.wav');
+  b1[5] = loadSound('audio1/E4.wav');
+  b1[6] = loadSound('audio1/G4.wav');
+  b1[7] = loadSound('audio1/C5.wav');
+
+  b2[0] = loadSound('audio2/G2.wav');
+  b2[1] = loadSound('audio2/C3.wav');
+  b2[2] = loadSound('audio2/E3.wav');
+  b2[3] = loadSound('audio2/G3.wav');
+  b2[4] = loadSound('audio2/C4.wav');
+  b2[5] = loadSound('audio2/E4.wav');
+  b2[6] = loadSound('audio2/G4.wav');
+  b2[7] = loadSound('audio2/C5.wav');
+  
+  b3[0] = loadSound('audio3/0.wav');
+  b3[1] = loadSound('audio3/1.wav');
+  b3[2] = loadSound('audio3/2.wav');
+  b3[3] = loadSound('audio3/3.wav');
+  b3[4] = loadSound('audio3/4.wav');
+  b3[5] = loadSound('audio3/5.wav');
+  b3[6] = loadSound('audio3/6.wav');
+  b3[7] = loadSound('audio3/7.wav');
 }
 
 function setup() {
-  masterVolume(0.25);
+  masterVolume(1);
   colorSetup();
-  createCanvas(windowWidth, windowHeight);
-  
-  background(240);
+  var canvas = createCanvas(500, 300);
+  canvas.parent('sketch-holder')
+  background(250);
   for(i=0;i<8;i++) {
     s[i]
     pads[i] = new pad(padx[i],pady[i],c[i],ch[i],0);
@@ -32,17 +51,10 @@ function setup() {
 }
 
 function draw() { 
-  translate(windowWidth/2, windowHeight/2);
   noStroke();
   for(i=0;i<8;i++) {
     pads[i].display();
   }
-  fill(0);
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  background(255);
 }
 
 function press(n) {
@@ -84,7 +96,7 @@ class pad {
   }
 
   display() {
-    if(dist(this.x, this.y, mouseX-(windowWidth/2), mouseY-(windowHeight/2))<25){
+    if(dist(this.x, this.y, mouseX, mouseY)<25){
       hover(this);
     }
     else {
@@ -105,9 +117,10 @@ function colorSetup() {
 
 function mousePressed(){
   for(i=0;i<8;i++) {
-    if (dist(pads[i].x, pads[i].y, mouseX-(windowWidth/2), mouseY-(windowHeight/2))<25){
+    if (dist(pads[i].x, pads[i].y, mouseX, mouseY)<25){
       if(pads[i].p<1){
-        s[0][i].play();
+        s[bank][i].fade(1,0);
+        s[bank][i].play();
         pads[i].p=1;
       }
       print("pressed");
@@ -117,6 +130,7 @@ function mousePressed(){
 
 function mouseReleased(){
   for(i=0;i<8;i++){
+    s[bank][i].fade(0,1);
     pads[i].p = 0;
     pads[i].hover = ch[i];
   }
@@ -127,7 +141,8 @@ function keyPressed(){
     if(keyCode==keys[i]){
       pads[i].fill = cc[i];
       if(pads[i].p<1){
-        s[0][i].play();
+        s[bank][i].fade(1,0);
+        s[bank][i].play();
         pads[i].p=1;
       }
     }
@@ -138,7 +153,47 @@ function keyReleased(){
   for(i=0;i<8;i++){
     if(keyCode==keys[i]){
       pads[i].fill = c[i];
+      s[bank][i].fade(0,1);
       pads[i].p = 0;
+    }
+  }
+}
+
+function bankFunction(num) {
+  bank = num;
+  print(num);
+}
+
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function helpFunction() {
+  document.getElementById("myDropdown2").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('#b1')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+  if (!event.target.matches('#b2')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content2");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
     }
   }
 }
