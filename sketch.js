@@ -188,6 +188,7 @@ function touchStarted() {
     }
     print("pressed");
   }
+  return false;
 }
 
 function touchEnded(){
@@ -196,6 +197,7 @@ function touchEnded(){
     pads[i].p = 0;
     pads[i].hover = ch[i];
   }
+  return false;
 }
 
 
