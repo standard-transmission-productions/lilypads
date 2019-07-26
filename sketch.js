@@ -1,7 +1,9 @@
 let b1 = [];
 let b2 = [];
 let b3 = [];
-let s = [b1,b2,b3];
+let b4 = [];
+let b5 = [];
+let s = [b1,b2,b3,b4,b5];
 let p = [];
 let pads = [];
 let padx = [100,200,300,400,100,200,300,400];
@@ -28,14 +30,32 @@ function preload() {
   b2[6] = loadSound('audio2/G4.wav');
   b2[7] = loadSound('audio2/C5.wav');
   
-  b3[0] = loadSound('audio3/0.wav');
-  b3[1] = loadSound('audio3/1.wav');
-  b3[2] = loadSound('audio3/2.wav');
-  b3[3] = loadSound('audio3/3.wav');
-  b3[4] = loadSound('audio3/4.wav');
-  b3[5] = loadSound('audio3/5.wav');
-  b3[6] = loadSound('audio3/6.wav');
-  b3[7] = loadSound('audio3/7.wav');
+  b3[0] = loadSound('audio3/sG3.wav');
+  b3[1] = loadSound('audio3/sC4.wav');
+  b3[2] = loadSound('audio3/sE3.wav');
+  b3[3] = loadSound('audio3/sG4.wav');
+  b3[4] = loadSound('audio3/lG3.wav');
+  b3[5] = loadSound('audio3/lC4.wav');
+  b3[6] = loadSound('audio3/lE3.wav');
+  b3[7] = loadSound('audio3/lG4.wav');
+
+  b4[0] = loadSound('audio4/G2.wav');
+  b4[1] = loadSound('audio4/C3.wav');
+  b4[2] = loadSound('audio4/E3.wav');
+  b4[3] = loadSound('audio4/G3.wav');
+  b4[4] = loadSound('audio4/C4.wav');
+  b4[5] = loadSound('audio4/E4.wav');
+  b4[6] = loadSound('audio4/G4.wav');
+  b4[7] = loadSound('audio4/C5.wav');
+
+  b5[0] = loadSound('audio5/0.wav');
+  b5[1] = loadSound('audio5/1.wav');
+  b5[2] = loadSound('audio5/2.wav');
+  b5[3] = loadSound('audio5/3.wav');
+  b5[4] = loadSound('audio5/4.wav');
+  b5[5] = loadSound('audio5/5.wav');
+  b5[6] = loadSound('audio5/6.wav');
+  b5[7] = loadSound('audio5/7.wav');
 }
 
 function setup() {
