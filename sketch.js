@@ -1,4 +1,7 @@
-let s = [];
+let b1 = [];
+let b2 = [];
+let b3 = [];
+let s = [b1,b2,b3];
 let p = [];
 let pads = [];
 let padx = [-150,-50,50,150,-150,-50,50,150];
@@ -6,14 +9,14 @@ let pady = [-50,-50,-50,-50,50,50,50,50];
 let keys = [65,83,68,70,74,75,76,186];
 
 function preload() {
-  s[0] = loadSound('audio/G2.wav');
-  s[1] = loadSound('audio/C3.wav');
-  s[2] = loadSound('audio/E3.wav');
-  s[3] = loadSound('audio/G3.wav');
-  s[4] = loadSound('audio/C4.wav');
-  s[5] = loadSound('audio/E4.wav');
-  s[6] = loadSound('audio/G4.wav');
-  s[7] = loadSound('audio/C5.wav');
+  s[0][0] = loadSound('audio/G2.wav');
+  s[0][1] = loadSound('audio/C3.wav');
+  s[0][2] = loadSound('audio/E3.wav');
+  s[0][3] = loadSound('audio/G3.wav');
+  s[0][4] = loadSound('audio/C4.wav');
+  s[0][5] = loadSound('audio/E4.wav');
+  s[0][6] = loadSound('audio/G4.wav');
+  s[0][7] = loadSound('audio/C5.wav');
 }
 
 function setup() {
@@ -24,7 +27,7 @@ function setup() {
   background(240);
   for(i=0;i<8;i++) {
     s[i]
-    pads[i] = new pad(padx[i],pady[i],c[i],ch[i],s[i],0);
+    pads[i] = new pad(padx[i],pady[i],c[i],ch[i],0);
   }
 }
 
@@ -76,7 +79,7 @@ class pad {
     this.y = y;
     this.fill = c;
     this.hover = ch;
-    this.s = s;
+    //this.s = s;
     this.p = p;
   }
 
@@ -104,7 +107,7 @@ function mousePressed(){
   for(i=0;i<8;i++) {
     if (dist(pads[i].x, pads[i].y, mouseX-(windowWidth/2), mouseY-(windowHeight/2))<25){
       if(pads[i].p<1){
-        pads[i].s.play();
+        s[0][i].play();
         pads[i].p=1;
       }
       print("pressed");
@@ -124,7 +127,7 @@ function keyPressed(){
     if(keyCode==keys[i]){
       pads[i].fill = cc[i];
       if(pads[i].p<1){
-        pads[i].s.play();
+        s[0][i].play();
         pads[i].p=1;
       }
     }
