@@ -26,6 +26,15 @@ body {
     background: #f5f5f5;
 }
 
+#p5_loading {
+    font-family: Helvetica, sans-serif;
+    color: #a3a3a3;
+    display: flex;
+    width: 500px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+}
 
 
 
