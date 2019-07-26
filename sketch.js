@@ -179,6 +179,27 @@ function keyReleased(){
   }
 }
 
+function touchStarted() {
+  if (dist(pads[i].x, pads[i].y, mouseX, mouseY)<25){
+    if(pads[i].p<1){
+      s[bank][i].fade(1,0);
+      s[bank][i].play();
+      pads[i].p=1;
+    }
+    print("pressed");
+  }
+}
+
+function touchEnded(){
+  for(i=0;i<8;i++){
+    s[bank][i].fade(0,1);
+    pads[i].p = 0;
+    pads[i].hover = ch[i];
+  }
+}
+
+
+
 function bankFunction(num) {
   bank = num;
   print(num);
